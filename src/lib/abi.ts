@@ -178,4 +178,4 @@ export const escrowAbi = [
   }
 ] as const;
 
-export const CONTRACT_ADDRESS = (process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || "0xd0cc532f55ce6849d5b70e24d6188073f8921621") as \`0x\${string}\`;
+export const CONTRACT_ADDRESS = (process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || "0xd0cc532f55ce6849d5b70e24d6188073f8921621") as `0x${string}`;
