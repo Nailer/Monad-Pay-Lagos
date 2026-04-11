@@ -31,7 +31,7 @@ export default function TradeDetail() {
   const params = useParams();
   const idStr = params?.id as string;
   const tradeId = idStr ? BigInt(idStr) : BigInt(0);
-  
+
   const account = useActiveAccount();
   const [trade, setTrade] = useState<TradeData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -147,8 +147,8 @@ export default function TradeDetail() {
           <ArrowLeft className="w-4 h-4" /> Back to Ledger
         </Link>
         <div className="flex items-center gap-2">
-            <div className={`w-2 h-2 rounded-full animate-pulse ${trade.released ? 'bg-zinc-500' : 'bg-green-500'}`} />
-            <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Monad Live Status</span>
+          <div className={`w-2 h-2 rounded-full animate-pulse ${trade.released ? 'bg-zinc-500' : 'bg-green-500'}`} />
+          <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Monad Live Status</span>
         </div>
       </div>
 
@@ -158,17 +158,16 @@ export default function TradeDetail() {
           <div>
             <h2 className="text-4xl font-black text-white mb-2">Trade #00{idStr}</h2>
             <div className="flex items-center gap-2 text-zinc-500 text-sm italic">
-                <Info className="w-4 h-4" />
-                <span>{trade.metadata}</span>
+              <Info className="w-4 h-4" />
+              <span>{trade.metadata}</span>
             </div>
           </div>
-          <div className={`px-6 py-2 rounded-2xl font-black text-[10px] uppercase tracking-widest border ${
-            trade.released 
-              ? 'bg-green-500/10 text-green-400 border-green-500/20' 
-              : trade.sellerApprovedRefund 
-                ? 'bg-blue-500/10 text-blue-400 border-blue-400/20' 
+          <div className={`px-6 py-2 rounded-2xl font-black text-[10px] uppercase tracking-widest border ${trade.released
+              ? 'bg-green-500/10 text-green-400 border-green-500/20'
+              : trade.sellerApprovedRefund
+                ? 'bg-blue-500/10 text-blue-400 border-blue-400/20'
                 : 'bg-[#FF007A]/10 text-[#FF007A] border-[#FF007A]/20'
-          }`}>
+            }`}>
             {trade.released ? "Settled" : trade.sellerApprovedRefund ? "Refund Ready" : "Funds Escrowed"}
           </div>
         </div>
@@ -185,7 +184,7 @@ export default function TradeDetail() {
               <span className="text-[10px] font-black text-zinc-600 uppercase tracking-widest mb-2">Locked Value</span>
               <span className="text-4xl font-black text-white">{formatEther(trade.amount)} <span className="text-sm font-normal text-zinc-500">MON</span></span>
             </div>
-            
+
             <div className="p-8 rounded-[2rem] bg-black/40 border border-zinc-800 flex flex-col justify-center">
               <span className="text-[10px] font-black text-zinc-600 uppercase tracking-widest mb-2">Agreement Status</span>
               {trade.released ? (
@@ -201,20 +200,20 @@ export default function TradeDetail() {
           </div>
 
           <div className="grid grid-cols-1 gap-4">
-             <div className="p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800 flex items-center justify-between">
-               <div className="flex flex-col">
-                 <span className="text-[10px] font-black text-zinc-600 uppercase tracking-widest mb-1">Buyer (Payer)</span>
-                 <span className="text-white font-mono text-xs">{trade.buyer.slice(0,10)}...{trade.buyer.slice(-8)}</span>
-               </div>
-               {isBuyer && <span className="text-[10px] font-black bg-[#FF007A] text-white px-3 py-1 rounded-full">YOU</span>}
-             </div>
-             <div className="p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800 flex items-center justify-between">
-               <div className="flex flex-col">
-                 <span className="text-[10px] font-black text-zinc-600 uppercase tracking-widest mb-1">Seller (Vendor)</span>
-                 <span className="text-white font-mono text-xs">{trade.seller.slice(0,10)}...{trade.seller.slice(-8)}</span>
-               </div>
-               {isSeller && <span className="text-[10px] font-black bg-[#FF007A] text-white px-3 py-1 rounded-full">YOU</span>}
-             </div>
+            <div className="p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800 flex items-center justify-between">
+              <div className="flex flex-col">
+                <span className="text-[10px] font-black text-zinc-600 uppercase tracking-widest mb-1">Buyer (Payer)</span>
+                <span className="text-white font-mono text-xs">{trade.buyer.slice(0, 10)}...{trade.buyer.slice(-8)}</span>
+              </div>
+              {isBuyer && <span className="text-[10px] font-black bg-[#FF007A] text-white px-3 py-1 rounded-full">YOU</span>}
+            </div>
+            <div className="p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800 flex items-center justify-between">
+              <div className="flex flex-col">
+                <span className="text-[10px] font-black text-zinc-600 uppercase tracking-widest mb-1">Seller (Vendor)</span>
+                <span className="text-white font-mono text-xs">{trade.seller.slice(0, 10)}...{trade.seller.slice(-8)}</span>
+              </div>
+              {isSeller && <span className="text-[10px] font-black bg-[#FF007A] text-white px-3 py-1 rounded-full">YOU</span>}
+            </div>
           </div>
         </div>
 
@@ -223,9 +222,9 @@ export default function TradeDetail() {
           <div className="mt-12 p-8 rounded-[2.5rem] bg-gradient-to-b from-zinc-800/20 to-transparent border border-zinc-800">
             <h3 className="text-sm font-black text-white uppercase tracking-[0.3em] mb-6 text-center">Settlement Actions</h3>
             <div className="flex flex-col gap-4">
-              
+
               {isBuyer && !trade.sellerApprovedRefund && (
-                <button 
+                <button
                   onClick={() => executeAction("releaseToSeller")}
                   disabled={actionLoading}
                   className="w-full flex items-center justify-center px-8 py-5 bg-white text-black font-black uppercase tracking-widest rounded-2xl hover:bg-zinc-200 transition-all disabled:opacity-50"
@@ -236,7 +235,7 @@ export default function TradeDetail() {
               )}
 
               {isSeller && !trade.sellerApprovedRefund && (
-                <button 
+                <button
                   onClick={() => executeAction("sellerApproveRefund")}
                   disabled={actionLoading}
                   className="w-full flex items-center justify-center px-8 py-5 bg-zinc-800 text-white font-black uppercase tracking-widest rounded-2xl hover:bg-zinc-700 transition-all disabled:opacity-50"
@@ -247,7 +246,7 @@ export default function TradeDetail() {
               )}
 
               {isBuyer && trade.sellerApprovedRefund && (
-                <button 
+                <button
                   onClick={() => executeAction("buyerClaimRefund")}
                   disabled={actionLoading}
                   className="w-full flex items-center justify-center px-8 py-5 bg-[#FF007A] text-white font-black uppercase tracking-widest rounded-2xl hover:scale-[1.02] transition-all disabled:opacity-50"
@@ -256,9 +255,9 @@ export default function TradeDetail() {
                   Withdraw Refund
                 </button>
               )}
-              
+
               {!isBuyer && !isSeller && (
-                  <p className="text-center text-zinc-600 text-xs italic">You are viewing this trade as an observer.</p>
+                <p className="text-center text-zinc-600 text-xs italic">You are viewing this trade as an observer.</p>
               )}
             </div>
           </div>
