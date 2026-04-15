@@ -1,8 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Monad Pay Lagos 🇳🇬💸
 
-## Getting Started
+**Monad Pay Lagos** is a modern Next.js-based escrow and payment platform built on the Monad blockchain. The platform aims to provide trustless, seamless, and secure trade capabilities by utilizing smart contracts, delivering the high performance of Monad combined with intuitive user interfaces.
 
-First, run the development server:
+## 🚀 Key Features
+
+* **Decentralized Escrow** mechanisms to secure payments between parties.
+* **Premium User Interface** built with modern aesthetics, utilizing Next.js, and Tailwind CSS.
+* **Wallet Connectivity** integrated effortlessly using [Thirdweb](https://thirdweb.com/).
+* **Secure Smart Contract interactions** handled primarily with `viem`.
+
+---
+
+## 📜 Smart Contract Information
+
+The core functionalities of this escrow application are governed by a robust smart contract on the blockchain. 
+
+### Deployment Overview
+
+| Property | Details |
+| :--- | :--- |
+| **Network** | Monad |
+| **Contract Address** | `0xd0cc532f55ce6849d5b70e24d6188073f8921621` |
+| **Deployment Method** | This contract was successfully compiled and deployed using the [Remix IDE](https://remix.ethereum.org/). |
+
+### Application Binary Interface (ABI)
+
+To interact with the smart contract, the ABI is explicitly required. It has been made available within the standard directory structure of this repository.
+
+📂 **ABI File Location:** [`abi/monad_pay_lagos.json`](./abi/monad_pay_lagos.json)
+
+*You can import this JSON file straight into your frontend code (as seen within `src/lib/abi.ts` or similar files) to properly interact with the predefined functions of the contract.*
+
+---
+
+## 🛠 Technologies Used
+
+| Category | Technology | Description |
+| :--- | :--- | :--- |
+| **Core Framework** | [Next.js (v16+)](https://nextjs.org/) | The React framework used for server-side rendering and client routing. |
+| **Web3 & Wallets** | [Thirdweb v5](https://thirdweb.com/) | For flexible and reliable wallet connection and management. |
+| **Blockchain Sync** | [viem](https://viem.sh/) | A modern TypeScript interface for Ethereum and compatible chains. |
+| **Styling** | [Tailwind CSS v4](https://tailwindcss.com/) | Utility-first CSS framework for rapid and modern UI development. |
+| **Icons** | [Lucide React](https://lucide.dev/) | Beautiful and consistent scalable vector icons. |
+
+---
+
+## ⚙️ How to Start the Project
+
+Follow these instructions to quickly spin up the development environment.
+
+### 1. Installation
+
+After cloning the repository, install the necessary dependencies using your preferred package manager.
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+### 2. Environment Variables
+
+Create a `.env` (or `.env.local`) file at the root of your project directory. Ensure the deployed contract address is placed within the environment variables for smooth interaction:
+
+```env
+CONTRACT_ADDRESS=0xd0cc532f55ce6849d5b70e24d6188073f8921621
+```
+*(Add API keys for Thirdweb if your setup implies any specific keys).*
+
+### 3. Start the Development Server
+
+Boot up the local Next.js server.
 
 ```bash
 npm run dev
@@ -10,27 +80,31 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 4. Open in Browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Finally, navigate to [http://localhost:3000](http://localhost:3000) using your web browser. You should see the application running. Any edits you make in `src/app/page.tsx` will automatically re-compile and update live on the screen!
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 📁 Repository Structure
 
-To learn more about Next.js, take a look at the following resources:
+For developers looking to dive right in, here's a brief overview of the project's layout:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```text
+Monad_Pay_Lagos/
+├── abi/                        # Contains the ABI JSON files
+│   └── monad_pay_lagos.json    # The smart contract ABI for the project
+├── public/                     # Static media files and generic assets
+└── src/                        # Main source code directory
+    ├── app/                    # Next.js App Router (Pages & Layouts)
+    │   ├── create/             # Route to create an escrow
+    │   ├── dashboard/          # Route for user dashboards
+    │   └── ...                 
+    └── lib/                    # Configuration and setup scripts
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🤝 Contributing
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+We heartily welcome contributions from the community! Feel free to review the issue tracker, fork the repository, and submit Pull Requests to help us improve the platform.
